@@ -1,26 +1,32 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace NLayer.Core.Repositoties
+namespace NLayer.Core.Services
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IService<T> where T : class
     {
+
         Task<T> GetByIdAsync(int id);
         //productRepository.where(x=>x.id).OrderBy.ToListAsync();
         /* IQueryable yapmamızın sebebi .ToListAsync() deyip veri tabanı sorgusu yapıp datayı memory ye aldıktan sonra OrderBy yapmak
         yerine direkt olarak OrderyBy ile sorgu yapmamızı sağlayacaktır.
          */
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> GetAllAsync();
 
 
-        IQueryable<T> Where(Expression<Func<T,bool>> expression);
+        IQueryable<T> Where(Expression<Func<T, bool>> expression);
 
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task AddAsync(T entity);
 
         Task AddRangeAsync(IEnumerable<T> entities);
-        void Update(T entity);
-        void Remove(T entity);
-        void RemoveRange(IEnumerable<T> entities);
+        Task UpdateAsync(T entity);
+        Task RemoveAsync(T entity);
+        Task RemoveRange(IEnumerable<T> entities);
 
     }
 }
