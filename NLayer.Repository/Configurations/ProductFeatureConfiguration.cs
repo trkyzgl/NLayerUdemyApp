@@ -9,18 +9,19 @@ using System.Threading.Tasks;
 
 namespace NLayer.Repository.Configurations
 {
-    internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    internal class ProductFeatureConfiguration : IEntityTypeConfiguration<ProductFeature>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<ProductFeature> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
+
+            /*Product ile ProductFeature arasında 1-1 ilişki kuruyoruz. Çümkü her bir ProductFeature nin bir Product ı olabilir */ 
+            builder.HasOne(x => x.Product).WithOne(x => x.ProductFeature).HasForeignKey<ProductFeature>(x => x.ProductId);
 
 
 
-            // Eğer burda tablo ismi vermezsek default olarak DbContext te ki DbSet teki İsmi alır. ama biz burda manuel olarak yine isimlendirme yapacağız
-            builder.ToTable("Categories");
+
             //throw new NotImplementedException();
         }
     }

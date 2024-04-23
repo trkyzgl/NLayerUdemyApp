@@ -22,10 +22,13 @@ namespace NLayer.Repository.Configurations
             builder.Property(x=>x.Price).IsRequired().HasColumnType("decimal(18,2)");
             builder.ToTable("Products");
 
+
+            /* Best practice olarak CategoryId olarak isimlendirme yapmış olmasaydık Entity de [Key] atribute ü 
+             * ile bunun ForeignKey olduğunu belirtmemiz gerekecekti. Ama biz yinede manuel olarak belirtelim */
+            // Burada 1-n ilişkinin yapılıyor.
             builder.HasOne(x=>x.Category).WithMany(x => x.Products).HasForeignKey(x=>x.CategoryId);
             
-            
-            
+           
             //throw new NotImplementedException();
         }
     }
