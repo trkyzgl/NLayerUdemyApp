@@ -30,9 +30,7 @@ namespace NLayer.Repository
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
 
-
             /*Product ve Category için Seed oluşturduk ama farklılık olması için ProductFeature için burda işlme yapalım*/
-
             modelBuilder.Entity<ProductFeature>().HasData(new ProductFeature()
             {
                 Id = 1,
