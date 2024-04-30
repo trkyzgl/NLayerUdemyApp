@@ -46,7 +46,7 @@ namespace NLayer.Repository.Repositories
             //throw new NotImplementedException();
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
+        public IQueryable<T> GetAll()
         {
             // AsNoTracking kullanmamızın sebebi ilk başta verileri memory e almasın. Çünkü ben daha özel sorgular yazabilirim.
             return _dbSet.AsNoTracking().AsQueryable();

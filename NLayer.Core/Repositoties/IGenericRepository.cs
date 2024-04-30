@@ -9,7 +9,7 @@ namespace NLayer.Core.Repositoties
         /* IQueryable yapmamızın sebebi .ToListAsync() deyip veri tabanı sorgusu yapıp datayı memory ye aldıktan sonra OrderBy yapmak
         yerine direkt olarak OrderyBy ile sorgu yapmamızı sağlayacaktır.
          */
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
+        IQueryable<T> GetAll();
 
 
         IQueryable<T> Where(Expression<Func<T,bool>> expression);
