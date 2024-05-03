@@ -20,9 +20,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-
-
-
 //.net core 6 ile beraber StartUp dosyası kalktı. orada kodlar Program dosyasına eklendi.
 /*Bizde EFCore a yapmış olduğumuz ConnectionStringi Kullanma bilgisini vereceğiz*/
 
@@ -30,7 +27,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-builder.Services.AddAutoMapper(typeof(MapProfile));   /*Mapper ı kullanmak için bilder ediyoruz*/
+builder.Services.AddAutoMapper(typeof(MapProfile));   /*AutoMapper ı kullanmak için builder ediyoruz*/
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
