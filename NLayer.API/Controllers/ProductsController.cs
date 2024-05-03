@@ -59,12 +59,9 @@ namespace NLayer.API.Controllers
         [HttpDelete("id")]    // Bu bir HttpDelete iisteği olacak
         public async Task<IActionResult> Remove(int id)
         {
-
             var product = await _service.GetByIdAsync(id);
-
-
             await _service.RemoveAsync(product);
-            return CreateActionResult(CustomResponseDto<ProductDto>.Success(204));
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
     }
 }
