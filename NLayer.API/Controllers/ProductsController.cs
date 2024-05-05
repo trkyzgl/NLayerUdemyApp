@@ -55,6 +55,7 @@ namespace NLayer.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
+
         // DELETE api/products/5 
         [HttpDelete("id")]    // Bu bir HttpDelete isteği olacak
         public async Task<IActionResult> Remove(int id)
