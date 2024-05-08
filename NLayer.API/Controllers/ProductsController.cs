@@ -13,12 +13,25 @@ namespace NLayer.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IService<Product> _service;
+        private readonly IProductService productService;
 
-        public ProductsController(IMapper mapper, IService<Product> service)
+        public ProductsController(IMapper mapper, IService<Product> service, IProductService productService = null)
         {
             _mapper = mapper;
             _service = service;
+            this.productService = productService;
         }
+
+
+        //[HttpGet("GetProductWithCategory")]  // Bu durumda her defasında bu şekilde metot ismini belirtmek yerine "action" yazarsak otomatik olarak metot adını alır
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProductWithCategory()
+        {
+            return CreateActionResult(await productService.GetProductsWithCategory());
+        }
+
+
+
 
 
         [HttpGet]    // Bu bir HttpGet isteği olacak
@@ -32,7 +45,7 @@ namespace NLayer.API.Controllers
 
 
         //www.mysite/api/products/5     gibi olacak
-        [HttpGet("id")]    // Bu bir HttpGet iisteği olacak
+        [HttpGet("{id}")]    // Bu bir HttpGet iisteği olacak
         public async Task<IActionResult> GetById(int id)
         {
             var product = await _service.GetByIdAsync(id);
@@ -57,7 +70,7 @@ namespace NLayer.API.Controllers
 
 
         // DELETE api/products/5 
-        [HttpDelete("id")]    // Bu bir HttpDelete isteği olacak
+        [HttpDelete("{id}")]    // Bu bir HttpDelete isteği olacak
         public async Task<IActionResult> Remove(int id)
         {
             var product = await _service.GetByIdAsync(id);
