@@ -31,7 +31,6 @@ namespace NLayer.API.Controllers
             return CreateActionResult(await _service.GetProductsWithCategory());
         }
 
-
         [HttpGet]    // Bu bir HttpGet isteği olacak
         public async Task<IActionResult> All()
         {
@@ -40,7 +39,6 @@ namespace NLayer.API.Controllers
             //return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));  // BaseControllerde yazdığımız kodlar ile bir daha 'Ok' gibi durumlar dönmeye gerek yok
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
         }
-
 
         //www.mysite/api/products/5     gibi olacak
         [HttpGet("{id}")]    // Bu bir HttpGet iisteği olacak
