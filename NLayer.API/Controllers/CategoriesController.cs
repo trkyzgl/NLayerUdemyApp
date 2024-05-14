@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.Services;
 
 namespace NLayer.API.Controllers
@@ -7,6 +8,8 @@ namespace NLayer.API.Controllers
     /* Buraya gerek yok CustomBaseController dan miraz alacaz*/
     [Route("api/[controller]")]
     [ApiController]
+
+    //[ValidateFilterAttribute] // Global olarak kullacağımız için bu Attribute ü tek tek bütün controller lardatanımlamak yerine program.cs de tanımlayacağız
     public class CategoriesController : CustomBaseController
     {
 
