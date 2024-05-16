@@ -2,6 +2,7 @@
 using NLayer.Core.Repositoties;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
+using NLayer.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,14 @@ namespace NLayer.Service.Services
         }
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id);  
+            //gelen Id ye ait bir değer var mı ? kontrolunu burada yapacağız
+            var hasProduct =  await _repository.GetByIdAsync(id);
+            if (hasProduct == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name} ({id}) not found");
+            }
+            return hasProduct;
+
             //throw new NotImplementedException();
         }
         public async Task RemoveAsync(T entity)

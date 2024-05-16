@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLayer.API.Filters;
+using NLayer.API.Middlewares;
 using NLayer.Core.Repositoties;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -30,10 +31,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+
+
 //.net core 6 ile beraber StartUp dosyası kalktı. orada kodlar Program dosyasına eklendi.
 /*Bizde EFCore a yapmış olduğumuz ConnectionStringi Kullanma bilgisini vereceğiz*/
 
 ////
+
+builder.Services.AddScoped(typeof(NotFoundFilter<>)); // NotFound için tasarlamış olduğumuz hata Filtresini ekledik
+
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
@@ -74,6 +80,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();// Hatalarımızı yakalayıp döneceğimiz ve kendimizin yaptığı tasarım. NOT: HATA olduğu için UseAuthorization, MapControllers gibi eklemelerden önce yapılması gerekiyor
 
 app.UseAuthorization();
 

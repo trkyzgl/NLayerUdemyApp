@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
 using NLayer.Core.Services;
@@ -41,9 +42,11 @@ namespace NLayer.API.Controllers
         }
 
         //www.mysite/api/products/5     gibi olacak
+    [ServiceFilter(typeof(NotFoundFilter<Product>))]
         [HttpGet("{id}")]    // Bu bir HttpGet iisteği olacak
         public async Task<IActionResult> GetById(int id)
         {
+
             var product = await _service.GetByIdAsync(id);
             var productsDto = _mapper.Map<ProductDto>(product);
             return CreateActionResult(CustomResponseDto<ProductDto>.Success(200, productsDto));
