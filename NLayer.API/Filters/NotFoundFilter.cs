@@ -21,7 +21,7 @@ namespace NLayer.API.Filters
         {
             var idValue = context.ActionArguments.Values.FirstOrDefault();
 
-            if (idValue == null)
+            if (idValue == null)  // eğer Id değeri null ise kodun yürütümü devam edecek.. NOT: bURASI SONRADAN AYRICA KONTROL EDİLECEK VE BAŞKA HATALAR İNCELENECEK
             {
                 await next.Invoke();
                 return;
@@ -31,15 +31,12 @@ namespace NLayer.API.Filters
             var anyEntity = await _service.AnyAsync(x => x.Id == id);
 
 
-            if (anyEntity)
+            if (anyEntity)// eğer Entity var ise kod yürütümü devam edecek.
             {
                 await next.Invoke();
                 return;
             }
-
-
             context.Result = new NotFoundObjectResult(CustomResponseDto<NoContentDto>.Fail(404, $"{typeof(T).Name} ({id}) not found"));
-
             //throw new NotImplementedException();
         }
     }
