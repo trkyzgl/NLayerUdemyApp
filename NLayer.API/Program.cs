@@ -40,7 +40,6 @@ builder.Services.AddSwaggerGen();
 /////////
 builder.Services.AddMemoryCache();  /// Cache yapma işlemini burada ekledik.
 
-
 builder.Services.AddScoped(typeof(NotFoundFilter<>)); // NotFound için tasarlamış olduğumuz hata Filtresini ekledik
 
 //builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();                     Gerek yok çünkü RepoServiceModule class ında eklemiş oldu
@@ -72,8 +71,6 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());  //AutoFac i programa eklediğimiz kısım
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));// modulu dahil ettik
-
-
 ////
 
 
