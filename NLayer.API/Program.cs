@@ -34,12 +34,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-
-
 //.net core 6 ile beraber StartUp dosyası kalktı. orada kodlar Program dosyasına eklendi.
 /*Bizde EFCore a yapmış olduğumuz ConnectionStringi Kullanma bilgisini vereceğiz*/
 
-////
+/////////
+builder.Services.AddMemoryCache();  /// Cache yapma işlemini burada ekledik.
+
 
 builder.Services.AddScoped(typeof(NotFoundFilter<>)); // NotFound için tasarlamış olduğumuz hata Filtresini ekledik
 
@@ -72,6 +72,8 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());  //AutoFac i programa eklediğimiz kısım
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));// modulu dahil ettik
+
+
 ////
 
 

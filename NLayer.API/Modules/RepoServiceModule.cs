@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using NLayer.Caching;
 using NLayer.Core.Repositoties;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
@@ -32,7 +33,7 @@ namespace NLayer.API.Modules
 
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope(); // Service ler ler için 
 
-
+            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
         }
 

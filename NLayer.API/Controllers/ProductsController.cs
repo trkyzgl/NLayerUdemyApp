@@ -16,7 +16,7 @@ namespace NLayer.API.Controllers
         //private readonly IService<Product> _service;    // Burayı ipral edip alt satırda _service kullanacağız. Çünkü zaten IProductService kalıtım alıyor ve aynı özellikleri taşıyor.
         private readonly IProductService _service;
 
-        public ProductsController(IMapper mapper, IService<Product> service, IProductService productService = null)
+        public ProductsController(IMapper mapper, IProductService productService = null)
         {
 
             //_service = service;
