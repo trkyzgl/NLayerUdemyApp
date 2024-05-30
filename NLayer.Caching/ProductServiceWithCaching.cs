@@ -85,12 +85,12 @@ namespace NLayer.Caching
             //throw new NotImplementedException();
         }
 
-        public  Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
+        public  Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
         {
 
             var product = _repository.GetProductsWithCategory();
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(product);
-            return Task.FromResult( CustomResponseDto<List<ProductWithCategoryDto>>.Success(200,productsWithCategoryDto));
+            return Task.FromResult(productsWithCategoryDto);
             //throw new NotImplementedException();
         }
 
