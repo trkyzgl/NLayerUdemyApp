@@ -30,13 +30,13 @@ namespace NLayer.Web.Controllers
 
 
         public async Task<IActionResult> Save()
-        {   
+        {
             var categories = await _categoryService.GetAllAsync();
             var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
-            ViewBag.Categories = new SelectList(categoriesDto, "Id","Name");
+            ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name");
             return View(); // Ayrıca bir not: en üst menuden Analyze->Code Cleanup-> profile bir kısmından kodları düzenleme yap.
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Save(ProductDto productDto)
         {
@@ -46,12 +46,12 @@ namespace NLayer.Web.Controllers
                 return RedirectToAction(nameof(Index));// başarılıysa Index e gitsin tekrar baksın
             }
             // else durumunda
-            var categories =await _categoryService.GetAllAsync();
+            var categories = await _categoryService.GetAllAsync();
             var categoriesDto = _mapper.Map<List<CategoryDto>>(categories.ToList());
             ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name");
             return View();// hatalıysa aynı sayfaya tekrar dönsün(Hata mesajı için)
         }
 
-        
+
     }
 }

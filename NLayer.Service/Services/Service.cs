@@ -3,12 +3,7 @@ using NLayer.Core.Repositoties;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
 using NLayer.Service.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Service.Services
 {
@@ -22,11 +17,11 @@ namespace NLayer.Service.Services
         {
             _repository = repository;
             _unitOfWork = unitOfWork;
-        }     
+        }
         //
         public async Task<T> AddAsync(T entity)
         {
-            await _repository.AddAsync(entity); 
+            await _repository.AddAsync(entity);
             await _unitOfWork.CommitAsync();
             return entity;
             //throw new NotImplementedException();
@@ -53,7 +48,7 @@ namespace NLayer.Service.Services
         public async Task<T> GetByIdAsync(int id)
         {
             //gelen Id ye ait bir değer var mı ? kontrolunu burada yapacağız
-            var hasProduct =  await _repository.GetByIdAsync(id);
+            var hasProduct = await _repository.GetByIdAsync(id);
             if (hasProduct == null)
             {
                 throw new NotFoundException($"{typeof(T).Name} ({id}) not found");
@@ -79,7 +74,7 @@ namespace NLayer.Service.Services
         {
             _repository.Update(entity);
             await _unitOfWork.CommitAsync();
-            
+
             //throw new NotImplementedException();
         }
 
