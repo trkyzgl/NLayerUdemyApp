@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using NLayer.Repository;
 using NLayer.Service.Mapping;
 using NLayer.Service.Validations;
+using NLayer.Web;
 using NLayer.Web.Modules;
 using System.Reflection;
 
@@ -36,6 +37,7 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
 
 
@@ -54,10 +56,12 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerB
 
 var app = builder.Build();
 
+
+app.UseExceptionHandler("/Home/Error");// Bu satır şimdilik burda kalacak. geliştirme bittikten sonra  IsDevelopment() şartının içine alacapız
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    //app.UseExceptionHandler("/Home/Error");   // bu satırı şimdilik dışarı alıyoruz çünkü geliştirme aşamasındayız ve hataları direk almamız lazım. geliştirmelerimiz bittikten sonra bu satırı dışarı alacağız
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }

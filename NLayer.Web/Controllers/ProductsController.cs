@@ -10,7 +10,6 @@ namespace NLayer.Web.Controllers
     public class ProductsController : Controller
     {
 
-
         private readonly IProductService _services;
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
@@ -26,8 +25,6 @@ namespace NLayer.Web.Controllers
         {
             return View(await _services.GetProductsWithCategory());
         }
-
-
 
         public async Task<IActionResult> Save()
         {
@@ -53,7 +50,7 @@ namespace NLayer.Web.Controllers
         }
 
 
-
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         public async Task<IActionResult> Update(int id)
         {
             var product = await _services.GetByIdAsync(id);
@@ -77,16 +74,12 @@ namespace NLayer.Web.Controllers
             ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name", productDto.CategoryId);
             return View();
         }
-
         public async Task<IActionResult> Remove(int id)
         {
             var product = await _services.GetByIdAsync(id);
             await _services.RemoveAsync(product);
             return RedirectToAction(nameof(Index));
         }
-
-
-
 
 
     }
