@@ -47,12 +47,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerB
 
 
 
-
-
 //////
-
-
-
 
 var app = builder.Build();
 
