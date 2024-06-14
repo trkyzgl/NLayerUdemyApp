@@ -18,11 +18,12 @@ namespace NLayer.Service.Services
             _repositoryRepository = repositoryRepository;
         }
 
-        public async Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
+        public async Task<CustomResponseDto< List<ProductWithCategoryDto>>> GetProductsWithCategory()
         {
             var product = await _repositoryRepository.GetProductsWithCategory();
             var productDto = _mapper.Map<List<ProductWithCategoryDto>>(product);
-            return productDto;
+            //return productDto; sadece web uygulaması kullanılacaksa bu yöntem kullanılır.
+            return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productDto);
             //throw new NotImplementedException();
         }
     }
