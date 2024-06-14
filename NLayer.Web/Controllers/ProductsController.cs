@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
-using NLayer.Core.Services;
 using NLayer.Web.Services;
 
 namespace NLayer.Web.Controllers
@@ -51,7 +49,7 @@ namespace NLayer.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _productApiService.SaveAsync(productDto); 
+                await _productApiService.SaveAsync(productDto);
                 return RedirectToAction(nameof(Index));// başarılıysa Index e gitsin tekrar baksın
             }
             // else durumunda
