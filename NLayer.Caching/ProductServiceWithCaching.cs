@@ -72,7 +72,11 @@ namespace NLayer.Caching
             //throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
         public Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
+=======
+        public  Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
+>>>>>>> 1c09a6cee11c8720302e63e204c79408ad25f231
         {
 
             var product = _repository.GetProductsWithCategory();

@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+>>>>>>> 1c09a6cee11c8720302e63e204c79408ad25f231
 using NLayer.Core.Services;
 
 namespace NLayer.Web.Controllers
@@ -10,6 +14,7 @@ namespace NLayer.Web.Controllers
     public class ProductsController : Controller
     {
 
+<<<<<<< HEAD
         private readonly IProductService _services;
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
@@ -19,10 +24,19 @@ namespace NLayer.Web.Controllers
             _services = services;
             _categoryService = categoryService;
             _mapper = mapper;
+=======
+
+        private readonly IProductService _services;
+
+        public ProductsController(IProductService services)
+        {
+            _services = services;
+>>>>>>> 1c09a6cee11c8720302e63e204c79408ad25f231
         }
 
         public async Task<IActionResult> Index()
         {
+<<<<<<< HEAD
             return View(await _services.GetProductsWithCategory());
         }
 
@@ -82,5 +96,10 @@ namespace NLayer.Web.Controllers
         }
 
 
+=======
+            //var CustomResponse = await _services.GetProductsWithCategory();
+            return View(await _services.GetProductsWithCategory());
+        }
+>>>>>>> 1c09a6cee11c8720302e63e204c79408ad25f231
     }
 }

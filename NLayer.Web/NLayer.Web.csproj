@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
+=======
+>>>>>>> 1c09a6cee11c8720302e63e204c79408ad25f231
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 
