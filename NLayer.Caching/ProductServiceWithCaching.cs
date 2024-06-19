@@ -41,10 +41,8 @@ namespace NLayer.Caching
             await _unitOfWork.CommitAsync();
             await CacheAllProductsAsync();
             return entity;
-
             //throw new NotImplementedException();
         }
-
         public async Task<IEnumerable<Product>> AddRangeAsync(IEnumerable<Product> entities)
         {
             await _repository.AddRangeAsync(entities);
@@ -53,18 +51,15 @@ namespace NLayer.Caching
             return entities;
             //throw new NotImplementedException();
         }
-
         public Task<bool> AnyAsync(Expression<Func<Product, bool>> expression)
         {
             throw new NotImplementedException();
         }
-
         public Task<IEnumerable<Product>> GetAllAsync()
         {
             return Task.FromResult(_memoryCache.Get<IEnumerable<Product>>(CacheProductKey));
             //throw new NotImplementedException();
         }
-
         public Task<Product> GetByIdAsync(int id)
         {
             var product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == id);
@@ -73,10 +68,7 @@ namespace NLayer.Caching
             {
                 throw new NotFoundException($"{typeof(Product).Name} ({id}) not found");
             }
-
-
             return Task.FromResult(product);
-
             //throw new NotImplementedException();
         }
 
@@ -94,8 +86,6 @@ namespace NLayer.Caching
             _repository.Remove(entity);
             await _unitOfWork.CommitAsync();
             await CacheAllProductsAsync();
-
-
             //throw new NotImplementedException();
         }
 
