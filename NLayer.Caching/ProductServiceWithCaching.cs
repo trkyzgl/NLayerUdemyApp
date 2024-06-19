@@ -80,12 +80,12 @@ namespace NLayer.Caching
             //throw new NotImplementedException();
         }
 
-        public Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
+        public async Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
         {
 
-            var product = _repository.GetProductsWithCategory();
+            var product = await _repository.GetProductsWithCategory();
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(product);
-            return Task.FromResult(productsWithCategoryDto);
+            return await Task.FromResult(productsWithCategoryDto);
             //throw new NotImplementedException();
         }
 

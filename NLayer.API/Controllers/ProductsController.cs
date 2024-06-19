@@ -29,7 +29,7 @@ namespace NLayer.API.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductWithCategory()
         {
-            return CreateActionResult(await _service.GetProductsWithCategory());
+            return CreateActionResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200,await _service.GetProductsWithCategory()));
         }
 
         [HttpGet]    // Bu bir HttpGet isteği olacak
