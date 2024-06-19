@@ -30,10 +30,7 @@ namespace NLayer.Caching
             {
                 _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
             }
-
-
         }
-
         public async Task<Product> AddAsync(Product entity)
         {
 
@@ -44,7 +41,6 @@ namespace NLayer.Caching
 
             //throw new NotImplementedException();
         }
-
         public async Task<IEnumerable<Product>> AddRangeAsync(IEnumerable<Product> entities)
         {
             await _repository.AddRangeAsync(entities);
@@ -64,7 +60,6 @@ namespace NLayer.Caching
             return Task.FromResult(_memoryCache.Get<IEnumerable<Product>>(CacheProductKey));
             //throw new NotImplementedException();
         }
-
         public Task<Product> GetByIdAsync(int id)
         {
             var product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == id);
@@ -73,16 +68,11 @@ namespace NLayer.Caching
             {
                 throw new NotFoundException($"{typeof(Product).Name} ({id}) not found");
             }
-
-
             return Task.FromResult(product);
-
             //throw new NotImplementedException();
         }
-
         public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
         {
-
             var product = _repository.GetProductsWithCategory();
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(product);
             return Task.FromResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsWithCategoryDto));
@@ -94,8 +84,6 @@ namespace NLayer.Caching
             _repository.Remove(entity);
             await _unitOfWork.CommitAsync();
             await CacheAllProductsAsync();
-
-
             //throw new NotImplementedException();
         }
 
@@ -120,7 +108,6 @@ namespace NLayer.Caching
             return _memoryCache.Get<List<Product>>(CacheProductKey).Where(expression.Compile()).AsQueryable();
             //throw new NotImplementedException();
         }
-
         //
         public async Task CacheAllProductsAsync()
         {
