@@ -66,7 +66,6 @@ namespace NLayer.Web.Controllers
             var product = await _productApiService.GetByIdAsync(id);
             var categoriesDto = await _categoryApiService.GetAllAsync();
 
-
             ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name", product.CategoryId);
             return View(product);
         }
@@ -76,17 +75,14 @@ namespace NLayer.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 await _productApiService.UpdateAsync(productDto);
                 return RedirectToAction(nameof(Index));// başarılıysa Index e gitsin tekrar baksın
             }
-
             var categoriesDto = await _categoryApiService.GetAllAsync();
-
-
             ViewBag.Categories = new SelectList(categoriesDto, "Id", "Name", productDto.CategoryId);
             return View();
         }
+
         public async Task<IActionResult> Remove(int id)
         {
             await _productApiService.RemoveAsync(id);
