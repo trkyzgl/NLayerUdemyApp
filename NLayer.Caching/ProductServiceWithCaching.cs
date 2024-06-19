@@ -30,18 +30,13 @@ namespace NLayer.Caching
             {
                 _memoryCache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
             }
-
-
         }
-
         public async Task<Product> AddAsync(Product entity)
         {
-
             await _repository.AddAsync(entity);
             await _unitOfWork.CommitAsync();
             await CacheAllProductsAsync();
             return entity;
-
             //throw new NotImplementedException();
         }
 
@@ -65,24 +60,20 @@ namespace NLayer.Caching
             //throw new NotImplementedException();
         }
 
+
         public Task<Product> GetByIdAsync(int id)
         {
             var product = _memoryCache.Get<List<Product>>(CacheProductKey).FirstOrDefault(x => x.Id == id);
-
             if (product == null)
             {
                 throw new NotFoundException($"{typeof(Product).Name} ({id}) not found");
             }
-
-
             return Task.FromResult(product);
-
             //throw new NotImplementedException();
         }
 
         public async Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
         {
-
             var product = await _repository.GetProductsWithCategory();
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(product);
             return await Task.FromResult(productsWithCategoryDto);

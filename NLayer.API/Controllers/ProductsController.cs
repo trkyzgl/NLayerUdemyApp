@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLayer.API.Filters;
 using NLayer.Core.DTOs;
@@ -29,7 +28,7 @@ namespace NLayer.API.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductWithCategory()
         {
-            return CreateActionResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200,await _service.GetProductsWithCategory()));
+            return CreateActionResult(CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, await _service.GetProductsWithCategory()));
         }
 
         [HttpGet]    // Bu bir HttpGet isteği olacak
@@ -42,7 +41,7 @@ namespace NLayer.API.Controllers
         }
 
         //www.mysite/api/products/5     gibi olacak
-    [ServiceFilter(typeof(NotFoundFilter<Product>))]
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         [HttpGet("{id}")]    // Bu bir HttpGet iisteği olacak
         public async Task<IActionResult> GetById(int id)
         {
