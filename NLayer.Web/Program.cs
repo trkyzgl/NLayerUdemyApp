@@ -37,7 +37,7 @@ builder.Services.AddHttpClient<ProductApiService>(opt =>
 });
 builder.Services.AddHttpClient<CategoryApiService>(opt =>
 {
-    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);// Product için eklediğimiz BaseUrl yi Program.cs de tanımladığımız kısım
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);// Category için eklediğimiz BaseUrl yi Program.cs de tanımladığımız kısım
 });
 
 
