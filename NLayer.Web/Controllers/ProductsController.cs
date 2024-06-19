@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
-using Microsoft.AspNetCore.Mvc;
 using NLayer.Core.Services;
 
 namespace NLayer.Web.Controllers

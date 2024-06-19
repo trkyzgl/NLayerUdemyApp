@@ -21,7 +21,7 @@ namespace NLayer.Service.Services
         public async Task<List<ProductWithCategoryDto>> GetProductsWithCategory()
         {
             var product = await _repositoryRepository.GetProductsWithCategory();
-            var productDto = _mapper.Map<List<ProductWithCategoryDto>>( product );
+            var productDto = _mapper.Map<List<ProductWithCategoryDto>>(product);
             return productDto;       // CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productDto);
             //throw new NotImplementedException();
         }
